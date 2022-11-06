@@ -24,8 +24,6 @@ public class Main {
         userService.saveUser(user3.getName(), user3.getLastName(), user3.getAge());
 
         List<User> strings = userService.getAllUsers();
-        for (User s : strings)
-            System.out.println(s);
 
         userService.removeUserById(3);
 

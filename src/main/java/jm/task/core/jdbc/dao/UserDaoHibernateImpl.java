@@ -88,4 +88,5 @@ public class UserDaoHibernateImpl implements UserDao {
         }
     }
 }
+// Попытался исправить весь код
 

@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    private static final SessionFactory sessionFactory = Util.getSessionFactory();
+    private final SessionFactory sessionFactory = Util.getSessionFactory();
     private Transaction transaction = null;
-    private static String createTable = "CREATE TABLE IF NOT EXISTS USERS" + "(Id BIGINT AUTO_INCREMENT, Name VARCHAR(255), LastName VARCHAR(255), Age INT, PRIMARY KEY (ID))";
-    private static  String dropTable = "DROP TABLE IF EXISTS USERS";
+    private String createTable = "CREATE TABLE IF NOT EXISTS USERS" + "(Id BIGINT AUTO_INCREMENT, Name VARCHAR(255), LastName VARCHAR(255), Age INT, PRIMARY KEY (ID))";
+    private String dropTable = "DROP TABLE IF EXISTS USERS";
     private String deleteUserById = "DELETE FROM USERS WHERE ID = ?";
     private String cleanTable = "TRUNKATE TABLE USERS";
 
@@ -29,7 +29,6 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createSQLQuery(createTable).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
             e.printStackTrace();
         }
     }
@@ -41,7 +40,6 @@ public class UserDaoHibernateImpl implements UserDao {
             session.createSQLQuery(dropTable).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
-            transaction.rollback();
             e.printStackTrace();
         }
     }
